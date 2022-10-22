@@ -32,10 +32,6 @@
   "methods":[{"name":"<init>","parameterTypes":["int","int"] }]
 },
 {
-  "name":"java.awt.DisplayMode",
-  "methods":[{"name":"<init>","parameterTypes":["int","int","int","int"] }]
-},
-{
   "name":"java.awt.Insets",
   "methods":[{"name":"<init>","parameterTypes":["int","int","int","int"] }]
 },
@@ -265,14 +261,14 @@
 {
   "name":"sun.font.GlyphList",
   "fields":[
-    {"name":"gposx"}, 
-    {"name":"gposy"}, 
     {"name":"images"}, 
     {"name":"lcdRGBOrder"}, 
     {"name":"lcdSubPixPos"}, 
     {"name":"len"}, 
     {"name":"positions"}, 
-    {"name":"usePositions"}
+    {"name":"usePositions"}, 
+    {"name":"x"}, 
+    {"name":"y"}
   ]
 },
 {
@@ -520,7 +516,9 @@
     {"name":"getAccessibleIndexInParent","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
     {"name":"getAccessibleParent","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
     {"name":"getAccessibleRole","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
-    {"name":"getFocusOwner","parameterTypes":["java.awt.Component"] }
+    {"name":"getChildrenAndRoles","parameterTypes":["javax.accessibility.Accessible","java.awt.Component","int","boolean"] }, 
+    {"name":"getFocusOwner","parameterTypes":["java.awt.Component"] }, 
+    {"name":"getInitialAttributeStates","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }
   ]
 },
 {
@@ -535,6 +533,14 @@
   "fields":[{"name":"ptr"}]
 },
 {
+  "name":"sun.lwawt.macosx.CInputMethod",
+  "fields":[
+    {"name":"fCurrentText"}, 
+    {"name":"fCurrentTextLength"}
+  ],
+  "methods":[{"name":"unmarkText","parameterTypes":[] }]
+},
+{
   "name":"sun.lwawt.macosx.CPlatformView",
   "fields":[{"name":"peer"}],
   "methods":[
@@ -546,8 +552,6 @@
   "name":"sun.lwawt.macosx.CPlatformWindow",
   "methods":[
     {"name":"deliverMoveResizeEvent","parameterTypes":["int","int","int","int","boolean"] }, 
-    {"name":"deliverNCMouseDown","parameterTypes":[] }, 
-    {"name":"deliverWindowClosingEvent","parameterTypes":[] }, 
     {"name":"deliverWindowFocusEvent","parameterTypes":["boolean","sun.lwawt.macosx.CPlatformWindow"] }, 
     {"name":"isBlocked","parameterTypes":[] }, 
     {"name":"isSimpleWindowOwnedByEmbeddedFrame","parameterTypes":[] }, 

@@ -15,6 +15,10 @@
       "locales":[""]
     }, 
     {
+      "name":"ch.interlis.ili2c.generator.Interlis1Generator",
+      "locales":[""]
+    }, 
+    {
       "name":"ch.interlis.ili2c.gui.Ili2cTexts",
       "locales":[""]
     }, 
@@ -25,6 +29,13 @@
     {
       "name":"com.apple.laf.resources.aqua",
       "classNames":["com.apple.laf.resources.aqua"]
+    }, 
+    {
+      "name":"com.sun.accessibility.internal.resources.accessibility",
+      "classNames":[
+        "com.sun.accessibility.internal.resources.accessibility", 
+        "com.sun.accessibility.internal.resources.accessibility_en"
+      ]
     }, 
     {
       "name":"com.sun.swing.internal.plaf.basic.resources.basic",

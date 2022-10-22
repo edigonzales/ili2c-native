@@ -103,6 +103,10 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"com.apple.laf.AquaOptionPaneUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
   "name":"com.apple.laf.AquaPanelUI",
   "methods":[
     {"name":"<init>","parameterTypes":[] }, 
@@ -169,6 +173,18 @@
 },
 {
   "name":"com.apple.laf.AquaUtilControlSize$PropertySizeListener",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.xml.internal.stream.XMLInputFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.xml.internal.stream.XMLOutputFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.xml.internal.stream.events.XMLEventFactoryImpl",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
@@ -259,7 +275,15 @@
   "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
 },
 {
+  "name":"javax.swing.plaf.basic.BasicOptionPaneUI",
+  "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
+},
+{
   "name":"javax.swing.plaf.basic.BasicPopupMenuUI",
+  "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
+},
+{
+  "name":"javax.swing.plaf.basic.BasicRootPaneUI",
   "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
 },
 {
@@ -303,7 +327,7 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
-  "name":"sun.security.provider.SHA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
+  "name":"sun.lwawt.macosx.CImage",
+  "methods":[{"name":"getCreator","parameterTypes":[] }]
 }
 ]
