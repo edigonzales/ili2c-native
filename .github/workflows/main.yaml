@@ -62,9 +62,6 @@ jobs:
           ls -la
           ls -la jdk
           ls -la jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
-          export PATH=${{ env.NIK_HOME }}/bin:$PATH
-          env
-          native-image --help
 
       - name: 'Download ili2c'
         run: |
@@ -73,7 +70,8 @@ jobs:
 
       - name: 'Create native image'
         run: |
-          export PATH=${{ env.NIK_HOME }}/bin:$PATH
+          export JAVA_HOME=${{ NIK_HOME }}/bellsoft-liberica-vm-openjdk11-21.0.0.2/Contents/Home
+          export PATH=$JAVA_HOME/bin:$PATH
           native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar ili2c/ili2c.jar ili2c
           ls -la
 
