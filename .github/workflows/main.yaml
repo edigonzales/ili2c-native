@@ -63,6 +63,7 @@ jobs:
           ls -la jdk
           ls -la jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
           export PATH=${{ env.NIK_HOME }}/bin:$PATH
+          env
           native-image --help
 
       - name: 'Download ili2c'
