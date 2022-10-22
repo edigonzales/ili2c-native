@@ -72,6 +72,7 @@ jobs:
           native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar ili2c/ili2c.jar ili2c
           ls -la
           ls -la jdk
+          ls -la jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
 
 
 
