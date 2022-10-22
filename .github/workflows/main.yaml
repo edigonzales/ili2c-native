@@ -53,6 +53,7 @@ jobs:
       - name: 'Download Liberica NIK'
         run: |
           curl -L https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-linux-amd64.tar.gz -o libericavm.zip
+          mkdir -p $PWD/jdk
           export INSTALL_DIR=$PWD/jdk
           tar -C $INSTALL_DIR -xzf libericavm.zip
           export NIK_HOME=$INSTALL_DIR/bellsoft-liberica-vm-core-openjdk17-22.2.0
