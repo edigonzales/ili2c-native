@@ -1,5 +1,9 @@
 name: ili2c-native
 on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**.md'
   workflow_dispatch:
     inputs:
       version:
