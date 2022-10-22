@@ -71,6 +71,7 @@ jobs:
           export PATH=${{ env.NIK_HOME }}/bin:$PATH
           native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar ili2c/ili2c.jar ili2c
           ls -la
+          ls -la jdk
 
 
 
