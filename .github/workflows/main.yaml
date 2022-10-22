@@ -62,7 +62,7 @@ jobs:
       - name: 'Download ili2c'
         run: |
           curl -L https://downloads.interlis.ch/ili2c/ili2c-5.3.0.zip -o ili2c.zip
-          unzip ili2c.zip
+          unzip ili2c.zip -d ili2c
 
       - name: 'Create native image'
         run: |
