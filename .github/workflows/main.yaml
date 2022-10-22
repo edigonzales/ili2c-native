@@ -12,6 +12,9 @@ on:
 
 jobs:  
   build:
+    env:
+      INSTALL_DIR: jdk
+      NIK_HOME: jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
     strategy:
       matrix:
         os: ['ubuntu-latest']
@@ -53,17 +56,16 @@ jobs:
       - name: 'Download Liberica NIK'
         run: |
           curl -L https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-linux-amd64.tar.gz -o libericavm.zip
-          mkdir -p $PWD/jdk
-          export INSTALL_DIR=$PWD/jdk
-          tar -C $INSTALL_DIR -xzf libericavm.zip
-          export NIK_HOME=$INSTALL_DIR/bellsoft-liberica-vm-core-openjdk17-22.2.0
-          export PATH=$NIK_HOME/bin:$PATH
+          mkdir -p ${{ env.INSTALL_DIR }}
+          tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
+          export PATH=${{ env.NIK_HOME }}/bin:$PATH
           native-image --help
 
       - name: 'Download ili2c'
         run: |
           curl -L https://downloads.interlis.ch/ili2c/ili2c-5.3.0.zip -o ili2c.zip
           unzip ili2c.zip
+          export PATH=${{ env.NIK_HOME }}/bin:$PATH
           native-image
 
 
