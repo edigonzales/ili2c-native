@@ -59,6 +59,7 @@ jobs:
           mkdir -p ${{ env.INSTALL_DIR }}
           tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
           echo ${{ env.NIK_HOME }}/bin >> $GITHUB_PATH
+          env
           native-image --help
 
       - name: 'Download ili2c'
