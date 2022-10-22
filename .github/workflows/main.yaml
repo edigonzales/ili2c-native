@@ -59,22 +59,24 @@ jobs:
           curl -L https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-macos-amd64.tar.gz -o libericavm.zip
           mkdir -p ${{ env.INSTALL_DIR }}
           tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
-          ls -la
-          ls -la jdk
-          ls -la jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
 
       - name: 'Download ili2c'
         run: |
           curl -L https://downloads.interlis.ch/ili2c/ili2c-5.3.0.zip -o ili2c.zip
-          unzip ili2c.zip -d ili2c
+          unzip ili2c.zip -d ili2c-dir
 
       - name: 'Create native image'
         run: |
           export JAVA_HOME=${{ env.NIK_HOME }}/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
-          native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar ili2c/ili2c.jar ili2c
+          native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar ili2c-dir/ili2c.jar ili2c
           ls -la
 
+      - uses: actions/upload-artifact@v2
+        #if: ${{ failure() }}
+        with:
+          name: artifact-macos
+          path: ili2c
 
 
       # - name: 'Download zipped ili2c release'
