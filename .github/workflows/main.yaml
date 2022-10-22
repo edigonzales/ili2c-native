@@ -20,19 +20,19 @@ jobs:
         #os: ['ubuntu-latest']
         os: ['macos-latest']
         # os: ['ubuntu-20.04', 'macos-10.15', 'windows-latest']
-        # include:
+        include:
         #   - os: 'ubuntu-20.04'
         #     label: 'linux'
         #     package: 'deb'
         #     icon: 'icons/icon-compiler-128x128.png'
         #     asset_prefix: 'ili2c_'
         #     asset_suffix: '-1_amd64'
-        #   - os: 'macos-10.15'
-        #     label: 'mac'
-        #     package: 'pkg'
-        #     icon: 'icons/icon-compiler-128x128.icns'
-        #     asset_prefix: 'ili2c-'
-        #     asset_suffix: ''
+          - os: 'macos-latest'
+            label: 'macos'
+            # package: 'pkg'
+            # icon: 'icons/icon-compiler-128x128.icns'
+            # asset_prefix: 'ili2c-'
+            # asset_suffix: ''
         #   - os: 'windows-latest'
         #     label: 'win'
         #     package: 'exe'
@@ -69,13 +69,14 @@ jobs:
         run: |
           export JAVA_HOME=${{ env.NIK_HOME }}/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
-          native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar ili2c-dir/ili2c.jar ili2c
+          native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir-${{matrix.label}}/reflect-config.json -H:ResourceConfigurationFiles=conf-dir-${{matrix.label}}/resource-config.json -jar ili2c-dir/ili2c.jar ili2c
+          chmod +rx ili2c
           ls -la
 
       - uses: actions/upload-artifact@v2
         #if: ${{ failure() }}
         with:
-          name: artifact-macos
+          name: artifact-${{matrix.label}}
           path: ili2c
 
 
