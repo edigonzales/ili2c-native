@@ -59,6 +59,7 @@ jobs:
           curl -L https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-macos-amd64.tar.gz -o libericavm.zip
           mkdir -p ${{ env.INSTALL_DIR }}
           tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
+          ls -la
 
       - name: 'Download ili2c'
         run: |
