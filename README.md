@@ -3,6 +3,7 @@
 ## TODO / Fragen
 
 - Besser aus einem Release herstellen. Bestehende resource-config.json? Wir auch mit dem Agent hergestellt, oder?
+- ...
 
 ## Ablauf
 Java: Liberica NIK 22.2.r11-nik
