@@ -36,7 +36,7 @@ graalvmNative {
             debug = false 
             verbose = true 
             fallback = false 
-            configurationFileDirectories.from(file("conf-dir-osx/")) // TODO: parametrize
+            configurationFileDirectories.from(file("conf-dir-"+getOperatingSystemName()+"/")) // TODO: parametrize
 
             buildArgs.add('--enable-url-protocols=http,https') 
                         
