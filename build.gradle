@@ -24,7 +24,6 @@ repositories {
     }
 }
 
-
 graalvmNative {
     toolchainDetection = false
     binaries {
@@ -92,6 +91,12 @@ jreleaser {
             //     path = "../artifacts-native/ili2repo-${version}-windows-x86-64.zip"
             //     platform = 'windows'
             // }
+
+            java {
+                groupId = 'ch.interlis'
+                artifactId = myArtifactId
+                version = '17'
+            }
         }
     }
 }

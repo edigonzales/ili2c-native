@@ -29,6 +29,9 @@ native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fa
 native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir/reflect-config.json -H:ResourceConfigurationFiles=conf-dir/resource-config.json -jar /Users/stefan/Downloads/ili2c-5.3.0/ili2c.jar ili2c
 ```
 
+Ubuntu: 
+- sudo apt-get install gcc zlib1g-dev build-essential
+- libxi-dev libxrender-dev
 
 
 Vgl ilivalidator:
