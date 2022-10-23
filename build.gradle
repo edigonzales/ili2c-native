@@ -67,6 +67,13 @@ jreleaser {
         license = 'MIT'
         docsUrl = 'https://github.com/edigonzales/ili2c-native'
         copyright = '2022 Stefan Ziegler'
+        version = APP_VERSION + "_" + buildNumber
+        versionPattern = 'CUSTOM'
+        java {
+            groupId = 'ch.interlis'
+            artifactId = myArtifactId
+            version = '17'
+        }
     }
     release {
         github {
@@ -91,12 +98,6 @@ jreleaser {
             //     path = "../artifacts-native/ili2repo-${version}-windows-x86-64.zip"
             //     platform = 'windows'
             // }
-
-            java {
-                groupId = 'ch.interlis'
-                artifactId = myArtifactId
-                version = '17'
-            }
         }
     }
 }
