@@ -29,11 +29,26 @@
 },
 {
   "name":"java.awt.Dimension",
+  "fields":[
+    {"name":"height"}, 
+    {"name":"width"}
+  ],
   "methods":[{"name":"<init>","parameterTypes":["int","int"] }]
+},
+{
+  "name":"java.awt.DisplayMode",
+  "methods":[{"name":"<init>","parameterTypes":["int","int","int","int"] }]
 },
 {
   "name":"java.awt.Insets",
   "methods":[{"name":"<init>","parameterTypes":["int","int","int","int"] }]
+},
+{
+  "name":"java.awt.Point",
+  "fields":[
+    {"name":"x"}, 
+    {"name":"y"}
+  ]
 },
 {
   "name":"java.awt.Window"
@@ -261,14 +276,14 @@
 {
   "name":"sun.font.GlyphList",
   "fields":[
+    {"name":"gposx"}, 
+    {"name":"gposy"}, 
     {"name":"images"}, 
     {"name":"lcdRGBOrder"}, 
     {"name":"lcdSubPixPos"}, 
     {"name":"len"}, 
     {"name":"positions"}, 
-    {"name":"usePositions"}, 
-    {"name":"x"}, 
-    {"name":"y"}
+    {"name":"usePositions"}
   ]
 },
 {
@@ -513,12 +528,14 @@
   "methods":[
     {"name":"accessibilityHitTest","parameterTypes":["java.awt.Container","float","float"] }, 
     {"name":"getAccessibility","parameterTypes":["java.lang.String[]"] }, 
+    {"name":"getAccessibleComponent","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
     {"name":"getAccessibleIndexInParent","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
     {"name":"getAccessibleParent","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
     {"name":"getAccessibleRole","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }, 
     {"name":"getChildrenAndRoles","parameterTypes":["javax.accessibility.Accessible","java.awt.Component","int","boolean"] }, 
     {"name":"getFocusOwner","parameterTypes":["java.awt.Component"] }, 
-    {"name":"getInitialAttributeStates","parameterTypes":["javax.accessibility.Accessible","java.awt.Component"] }
+    {"name":"getLocationOnScreen","parameterTypes":["javax.accessibility.AccessibleComponent","java.awt.Component"] }, 
+    {"name":"getSize","parameterTypes":["javax.accessibility.AccessibleComponent","java.awt.Component"] }
   ]
 },
 {

@@ -283,10 +283,6 @@
   "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
 },
 {
-  "name":"javax.swing.plaf.basic.BasicRootPaneUI",
-  "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
-},
-{
   "name":"javax.swing.plaf.basic.BasicViewportUI",
   "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
 },
@@ -329,5 +325,9 @@
 {
   "name":"sun.lwawt.macosx.CImage",
   "methods":[{"name":"getCreator","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 }
 ]
