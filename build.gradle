@@ -89,11 +89,11 @@ jreleaser {
             distributionType = 'NATIVE_IMAGE'
             stereotype = 'CLI'
             artifact {
-                path = "../artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-linux-x86-64.zip"
+                path = "./artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-linux-x86-64.zip"
                 platform = 'linux'
             }
             artifact {
-                path = "../artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-osx-x86-64.zip"
+                path = "./artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-osx-x86-64.zip"
                 platform = 'osx'
             }
             // artifact {

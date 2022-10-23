@@ -58,7 +58,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: sudo apt-get install gcc zlib1g-dev build-essential libxi-dev libxrender-dev
 
-      - name: 'Build Native Image (Linux)'
+      - name: 'Build native image (Linux)'
         if: ${{ runner.os == 'Linux' }}
         run: |
           export JAVA_HOME=$PWD/${{ env.NIK_HOME }}
