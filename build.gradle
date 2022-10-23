@@ -86,10 +86,10 @@ jreleaser {
         appNative {
             distributionType = 'NATIVE_IMAGE'
             stereotype = 'CLI'
-            // artifact {
-            //     path = "../artifacts-native/ili2repo-${version}-linux-x86-64.zip"
-            //     platform = 'linux'
-            // }
+            artifact {
+                path = "../artifacts-native/ili2repo-${APP_VERSION}_${buildNumber}-linux-x86-64.zip"
+                platform = 'linux'
+            }
             artifact {
                 path = "../artifacts-native/ili2repo-${APP_VERSION}_${buildNumber}-osx-x86-64.zip"
                 platform = 'osx'
