@@ -17,18 +17,19 @@ jobs:
       NIK_HOME: jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
     strategy:
       matrix:
-        #os: ['ubuntu-latest']
-        os: ['macos-latest']
+        os: ['ubuntu-latest']
+        #os: ['ubuntu-latest', 'macos-latest']
         # os: ['ubuntu-20.04', 'macos-10.15', 'windows-latest']
         include:
-        #   - os: 'ubuntu-20.04'
-        #     label: 'linux'
+          - os: 'ubuntu-latest'
+            label: 'linux'
+            downloadUrl: https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-linux-amd64.tar.gz
         #     package: 'deb'
         #     icon: 'icons/icon-compiler-128x128.png'
         #     asset_prefix: 'ili2c_'
         #     asset_suffix: '-1_amd64'
-          - os: 'macos-latest'
-            label: 'osx'
+          # - os: 'macos-latest'
+          #   label: 'osx'
             # package: 'pkg'
             # icon: 'icons/icon-compiler-128x128.icns'
             # asset_prefix: 'ili2c-'
@@ -56,11 +57,23 @@ jobs:
 
       - name: 'Download Liberica NIK'
         run: |
-          curl -L https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-macos-amd64.tar.gz -o libericavm.zip
+          curl -L ${{ matrix.downloadUrl}} -o libericavm.zip
           mkdir -p ${{ env.INSTALL_DIR }}
           tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
 
-      - name: 'Create native image'
+      - name: 'Build Native Image (Linux)'
+        if: ${{ runner.os == 'Linux' }}
+        run: apt-get install gcc zlib1g-dev build-essential libxi-dev libxrender-dev
+
+      - name: 'Build Native Image (Linux)'
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          export JAVA_HOME=$PWD/${{ env.NIK_HOME }}
+          export PATH=$JAVA_HOME/bin:$PATH
+          ./gradlew nativeCompile nativeImageDistZip -i
+
+      - name: 'Build native image (macOS)'
+        if: ${{ runner.os == 'macOS' }}
         run: |
           export JAVA_HOME=$PWD/${{ env.NIK_HOME }}/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
