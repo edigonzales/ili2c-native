@@ -1,9 +1,15 @@
 plugins {
-    id 'java'
+    id 'application'
     id 'org.graalvm.buildtools.native' version '0.9.16'
+    id 'org.jreleaser' version '1.2.0'
 }
 
+apply from: "$rootDir/gradle/versioning.gradle"
+
 //version '1.12.1'+System.getProperty('release','-SNAPSHOT')
+
+def myArtifactId = "ili2c"
+def os = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem; 
 
 dependencies {
     implementation "ch.interlis:ili2c-tool:5.3.0" // TODO: parametrize
@@ -27,7 +33,7 @@ graalvmNative {
             debug = false 
             verbose = true 
             fallback = false 
-            configurationFileDirectories.from(file("conf-dir-macos/")) // TODO: parametrize
+            configurationFileDirectories.from(file("conf-dir-osx/")) // TODO: parametrize
 
             buildArgs.add('--enable-url-protocols=http,https') 
                         
@@ -37,3 +43,77 @@ graalvmNative {
         }
     }
 }
+
+distributions {
+    nativeImage {
+        contents {
+            from 'build/native/nativeCompile/'
+        }
+    }
+}
+
+nativeImageDistZip {
+    archiveName myArtifactId + '-' + project.version.toString() + '-' + getOperatingSystemName() + '-' + getArchitectureName() + ".zip"
+}
+
+jreleaser {
+    gitRootSearch = true
+    
+    project {
+        name = myArtifactId
+        description = 'Native binaries for ili2c.'
+        website = 'http://blog.sogeo.services'
+        authors = ['edigonzales']
+        license = 'MIT'
+        docsUrl = 'https://github.com/edigonzales/ili2c-native'
+        copyright = '2022 Stefan Ziegler'
+    }
+    release {
+        github {
+            repoOwner = 'edigonzales'
+            overwrite = true
+            apiEndpoint = 'https://api.github.com'
+        }
+    }
+    distributions {
+        appNative {
+            distributionType = 'NATIVE_IMAGE'
+            stereotype = 'CLI'
+            // artifact {
+            //     path = "../artifacts-native/ili2repo-${version}-linux-x86-64.zip"
+            //     platform = 'linux'
+            // }
+            artifact {
+                path = "../artifacts-native/ili2repo-${version}-osx-x86-64.zip"
+                platform = 'osx'
+            }
+            // artifact {
+            //     path = "../artifacts-native/ili2repo-${version}-windows-x86-64.zip"
+            //     platform = 'windows'
+            // }
+        }
+    }
+}
+
+
+def getOperatingSystemName() {
+    def os = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem; 
+    def osName = os.getName().toLowerCase();
+    if (osName.contains("windows")) {
+        return "windows";
+    } else if (osName.contains("mac os x") || osName.contains("darwin") || osName.contains("osx")) {
+        return "osx";
+    } else if (osName.contains("linux")) {
+        return "linux";
+    } else {
+        // not strictly true
+        return "unix";
+    }
+}
+
+def getArchitectureName() {
+    def arch = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentArchitecture; 
+    def archName = arch.getName().toLowerCase();
+    return archName;    
+}
+

@@ -28,7 +28,7 @@ jobs:
         #     asset_prefix: 'ili2c_'
         #     asset_suffix: '-1_amd64'
           - os: 'macos-latest'
-            label: 'macos'
+            label: 'osx'
             # package: 'pkg'
             # icon: 'icons/icon-compiler-128x128.icns'
             # asset_prefix: 'ili2c-'
@@ -69,15 +69,13 @@ jobs:
         run: |
           export JAVA_HOME=${{ env.NIK_HOME }}/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
-          native-image -Djava.awt.headless=false --enable-url-protocols=http,https --no-fallback -H:ReflectionConfigurationFiles=conf-dir-${{matrix.label}}/reflect-config.json -H:ResourceConfigurationFiles=conf-dir-${{matrix.label}}/resource-config.json -jar ili2c-dir/ili2c.jar ili2c
-          chmod +rx ili2c
-          ls -la
+          ./gradlew nativeCompile nativeImageDistZip
 
       - uses: actions/upload-artifact@v2
-        #if: ${{ failure() }}
+        if: ${{ success() }}
         with:
-          name: artifact-${{matrix.label}}
-          path: ili2c
+          name: artifacts-native
+          path: build/distributions/*.zip
 
   release:
     #needs: [build-jvm, build-native]
@@ -101,7 +99,7 @@ jobs:
 
       - name: 'List artifacts'
         run: |
-          ls -la /home/runner/work/ili2c-native/ili2c-native/artifacts-macos
+          ls -la /home/runner/work/ili2c-native/ili2c-native/artifacts-native
           ls -la /home/runner/work/ili2c-native/ili2c-native/
       - name: Set up JDK 11
         uses: actions/setup-java@v3
