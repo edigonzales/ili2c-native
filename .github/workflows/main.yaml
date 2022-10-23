@@ -17,9 +17,9 @@ jobs:
       NIK_HOME: jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
     strategy:
       matrix:
-        os: ['ubuntu-20.04']
-        #os: ['ubuntu-20.04', 'macos-11']
-        # os: ['ubuntu-20.04', 'macos-11', 'windows-2022']
+        #os: ['ubuntu-20.04']
+        os: ['ubuntu-20.04', 'macos-12']
+        # os: ['ubuntu-20.04', 'macos-12', 'windows-2022']
         include:
           - os: 'ubuntu-20.04'
             label: 'linux'
