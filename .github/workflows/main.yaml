@@ -61,9 +61,9 @@ jobs:
           mkdir -p ${{ env.INSTALL_DIR }}
           tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
 
-      - name: 'Build Native Image (Linux)'
+      - name: 'Install build dependencies (Linux)'
         if: ${{ runner.os == 'Linux' }}
-        run: apt-get install gcc zlib1g-dev build-essential libxi-dev libxrender-dev
+        run: sudo apt-get install gcc zlib1g-dev build-essential libxi-dev libxrender-dev
 
       - name: 'Build Native Image (Linux)'
         if: ${{ runner.os == 'Linux' }}
