@@ -71,10 +71,11 @@ jreleaser {
         versionPattern = 'CUSTOM'
         java {
             groupId = 'ch.interlis'
-            artifactId = myArtifactId
-            version = '17'
+            //artifactId = myArtifactId
+            //version = '17'
         }
     }
+
     release {
         github {
             repoOwner = 'edigonzales'
@@ -82,16 +83,17 @@ jreleaser {
             apiEndpoint = 'https://api.github.com'
         }
     }
+
     distributions {
         appNative {
             distributionType = 'NATIVE_IMAGE'
             stereotype = 'CLI'
             artifact {
-                path = "../artifacts-native/ili2repo-${APP_VERSION}_${buildNumber}-linux-x86-64.zip"
+                path = "../artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-linux-x86-64.zip"
                 platform = 'linux'
             }
             artifact {
-                path = "../artifacts-native/ili2repo-${APP_VERSION}_${buildNumber}-osx-x86-64.zip"
+                path = "../artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-osx-x86-64.zip"
                 platform = 'osx'
             }
             // artifact {
@@ -101,7 +103,6 @@ jreleaser {
         }
     }
 }
-
 
 def getOperatingSystemName() {
     def os = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem; 

@@ -24,17 +24,9 @@ jobs:
           - os: 'ubuntu-20.04'
             label: 'linux'
             jdkDownloadUrl: https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-linux-amd64.tar.gz
-        #     package: 'deb'
-        #     icon: 'icons/icon-compiler-128x128.png'
-        #     asset_prefix: 'ili2c_'
-        #     asset_suffix: '-1_amd64'
           - os: 'macos-11'
             label: 'osx'
             jdkDownloadUrl: https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-macos-amd64.tar.gz
-            # package: 'pkg'
-            # icon: 'icons/icon-compiler-128x128.icns'
-            # asset_prefix: 'ili2c-'
-            # asset_suffix: ''
         #   - os: 'windows-2022'
         #     label: 'win'
         #     package: 'exe'
