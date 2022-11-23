@@ -4,8 +4,6 @@ plugins {
     id 'org.jreleaser' version '1.2.0'
 }
 
-//version '1.12.1'+System.getProperty('release','-SNAPSHOT')
-
 def APP_VERSION = "5.3.0"
 
 def myArtifactId = "ili2c"
@@ -13,7 +11,7 @@ def buildNumber = System.env.GITHUB_RUN_NUMBER
 def os = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem; 
 
 dependencies {
-    implementation "ch.interlis:ili2c-tool:${APP_VERSION}" // TODO: parametrize
+    implementation "ch.interlis:ili2c-tool:${APP_VERSION}" 
 }
 
 repositories {
@@ -33,7 +31,6 @@ graalvmNative {
             debug = false 
             verbose = true 
             fallback = false 
-            configurationFileDirectories.from(file("conf-dir-"+getOperatingSystemName()+"/")) // TODO: parametrize
 
             buildArgs.add('--enable-url-protocols=http,https') 
                         
@@ -96,10 +93,10 @@ jreleaser {
                 path = "./artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-osx-x86-64.zip"
                 platform = 'osx'
             }
-            // artifact {
-            //     path = "../artifacts-native/ili2repo-${version}-windows-x86-64.zip"
-            //     platform = 'windows'
-            // }
+            artifact {
+                path = "./artifacts-native/ili2c-${version}-windows-x86-64.zip"
+                platform = 'windows'
+            }
         }
     }
 }
