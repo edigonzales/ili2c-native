@@ -20,7 +20,7 @@ Zusätzliche Config für Native-Image mittels Agent erzeugen:
 ```
 java -agentlib:native-image-agent=config-output-dir=conf-dir -jar dist/ili2c-tool-5.3.1-SNAPSHOT/ili2c.jar
 
-java -agentlib:native-image-agent=config-output-dir=conf-dir-macos -jar /Users/stefan/Downloads/ili2c-5.3.0/ili2c.jar
+java -agentlib:native-image-agent=config-output-dir=conf-dir-osx -jar /Users/stefan/Downloads/ili2c-5.3.0/ili2c.jar
 ```
 
 ```
