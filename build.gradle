@@ -68,8 +68,6 @@ jreleaser {
         versionPattern = 'CUSTOM'
         java {
             groupId = 'ch.interlis'
-            //artifactId = myArtifactId
-            //version = '17'
         }
     }
 
