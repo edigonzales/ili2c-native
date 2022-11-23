@@ -50,7 +50,6 @@ jobs:
           path: build/distributions/*.zip
 
   release:
-    if: github.ref != 'refs/heads/main'
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -87,4 +86,4 @@ jobs:
           ./gradlew -i jreleaserRelease
         env:
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ success() && github.ref == 'refs/heads/main'}}
+        if: ${{ success() && github.ref != 'refs/heads/main'}}
