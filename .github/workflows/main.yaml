@@ -7,69 +7,40 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version?'
         required: true
 
 jobs:  
   build:
-    env:
-      INSTALL_DIR: jdk
-      NIK_HOME: jdk/bellsoft-liberica-vm-core-openjdk17-22.2.0
     strategy:
       matrix:
         #os: ['ubuntu-20.04']
-        os: ['ubuntu-20.04', 'macos-12']
-        # os: ['ubuntu-20.04', 'macos-12', 'windows-2022']
+        #os: ['ubuntu-20.04', 'macos-12']
+        os: ['ubuntu-20.04', 'macos-12', 'windows-2022']
         include:
           - os: 'ubuntu-20.04'
-            label: 'linux'
-            jdkDownloadUrl: https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-linux-amd64.tar.gz
           - os: 'macos-12'
-            label: 'osx'
-            jdkDownloadUrl: https://download.bell-sw.com/vm/22.2.0/bellsoft-liberica-vm-core-openjdk17.0.4.1+1-22.2.0+3-macos-amd64.tar.gz
-        #   - os: 'windows-2022'
-        #     label: 'win'
-        #     package: 'exe'
-        #     icon: 'icons/icon-compiler-128x128.ico'
-        #     asset_prefix: 'ili2c-'
-        #     asset_suffix: ''
+          - os: 'windows-2022'
     runs-on: ${{matrix.os}}
 
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
 
-      - uses: actions/cache@v3
+      - name: Setup GraalVM
+        uses: graalvm/setup-graalvm@v1
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          version: '22.3.0'
+          java-version: '17'
+          components: 'native-image'
+          cache: 'gradle'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 'Download Liberica NIK'
+      - name: 'Add Developer Command Prompt for Microsoft Visual C++ '
+        if: ${{ runner.os == 'Windows' }}
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: 'Build native image'
         run: |
-          curl -L ${{ matrix.jdkDownloadUrl}} -o libericavm.zip
-          mkdir -p ${{ env.INSTALL_DIR }}
-          tar -C ${{ env.INSTALL_DIR }} -xzf libericavm.zip
-
-      - name: 'Install build dependencies (Linux)'
-        if: ${{ runner.os == 'Linux' }}
-        run: sudo apt-get install gcc zlib1g-dev build-essential libxi-dev libxrender-dev
-
-      - name: 'Build native image (Linux)'
-        if: ${{ runner.os == 'Linux' }}
-        run: |
-          export JAVA_HOME=$PWD/${{ env.NIK_HOME }}
-          export PATH=$JAVA_HOME/bin:$PATH
-          ./gradlew nativeCompile nativeImageDistZip -i
-
-      - name: 'Build native image (macOS)'
-        if: ${{ runner.os == 'macOS' }}
-        run: |
-          export JAVA_HOME=$PWD/${{ env.NIK_HOME }}/Contents/Home
-          export PATH=$JAVA_HOME/bin:$PATH
           ./gradlew nativeCompile nativeImageDistZip -i
 
       - uses: actions/upload-artifact@v2
@@ -79,16 +50,10 @@ jobs:
           path: build/distributions/*.zip
 
   release:
-    #needs: [build-jvm, build-native]
+    if: github.ref != 'refs/heads/main'
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
-      # - name: Run a script
-      #   run: |
-      #     pwd
-      #     ls -la
-
       - name: 'Check out repository'
         uses: actions/checkout@v2
         with:
