@@ -92,7 +92,7 @@ jreleaser {
                 platform = 'osx'
             }
             artifact {
-                path = "./artifacts-native/ili2c-${version}-windows-x86-64.zip"
+                path = "./artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-windows-x86-64.zip"
                 platform = 'windows'
             }
         }
