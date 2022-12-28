@@ -4,7 +4,7 @@ plugins {
     id 'org.jreleaser' version '1.2.0'
 }
 
-def APP_VERSION = "5.3.0"
+def APP_VERSION = "5.3.1"
 
 def myArtifactId = "ili2c"
 def buildNumber = System.env.GITHUB_RUN_NUMBER
@@ -94,7 +94,7 @@ jreleaser {
                 platform = 'osx'
             }
             artifact {
-                path = "./artifacts-native/ili2c-${version}-windows-x86-64.zip"
+                path = "./artifacts-native/ili2c-${APP_VERSION}_${buildNumber}-windows-x86-64.zip"
                 platform = 'windows'
             }
         }
